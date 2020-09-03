@@ -1,5 +1,5 @@
-# Simple app on React that takes user input and print each letter separed, styled with border around. User can delit any printed letter by clicking it.
-# This app was built to practice operation with state. 
+# A simple app on React that takes user input and print each letter separated, styled with a border around. Users can delete any printed letter by clicking it.
+# This app was built to practice operations with state.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
