@@ -53,7 +53,7 @@ class App extends Component {
     return (
       <div>
         <h1> Hello World</h1>
-        <input type="text" onChange={this.input} />
+        <input type="text" onChange={this.input} value={this.state.print[0].output} />
         {output}
 
         <div>
