@@ -4,69 +4,73 @@ import ValidationComponent from "./ValidationComponent/ValidationComponent";
 import CharComponent from "./CharComponent/CharComponent";
 
 class App extends Component {
- 
   state = {
-    print: [
-      { output: "Output will be here" },
-      
-    ],
+    print: [{ id: '1', output: "" }],
     showOutput: false,
   };
 
   input = (event) => {
-    let inputWord = event.target.value.length;
-    //let letters = "test";
-    let outputWord = "";
-    if(inputWord < 5){
-      outputWord = "Text too short"
-    } else {
-      outputWord = "Text long enough"
-    }
+    let inputWord = event.target.value;
   
     this.setState({
-      print: [
-        { output: outputWord }, 
-        { letters: "test2" }
-      ],
-
+      print: [{ output: inputWord }],
       showOutput: true,
     });
   };
-
+  deleteLetter = (letterIndex) => {
+    
+    const letters = [...this.state.print[0].output]
+    
+    letters.splice(letterIndex, 1)
+    let newLetters = letters.join("")
+    this.setState({print: [{output: newLetters}]})
+    
+  }
   render() {
     const style = {
-      display: 'inline-block',
-      padding: '16px',
-      textAlign: 'center',
-      margin: '16px',
-      border: '1px solid black'
-    }
+      display: "inline-block",
+      padding: "16px",
+      textAlign: "center",
+      margin: "16px",
+      border: "1px solid black",
+    };
     let output = null;
-
+    let textLength = "";
     if (this.state.showOutput) {
-      output = (
-      <div>
-        <ValidationComponent wordLength={this.state.print[0].output} />
-      </div>)
+      if (this.state.print[0].output.length < 5) {
+        textLength = "Text too short";
+      } else {
+        textLength = "Text long enough";
       }
-      
-        
-      return (
+      output = (
         <div>
-          <h1> Hello World</h1>
-          <input type="text" onChange={this.input} />
-          {output}
-
-          <div style={style}>
-            <CharComponent char={this.state.print[1]} />
-
-            {/* {this.state.letters.map((letter) => {
-              return <CharComponent char={this.letter} />;
-            })} */}
-          </div>
+          <ValidationComponent wordLength={textLength} />
         </div>
       );
-    
+    }
+    let renderedLetter = this.state.print[0].output.split("");
+
+    return (
+      <div>
+        <h1> Hello World</h1>
+        <input type="text" onChange={this.input} />
+        {output}
+
+        <div>
+          {renderedLetter.map((letter, index) => {
+            return (
+              <div style={style}>
+                <CharComponent 
+                char={letter} 
+                click={()=> this.deleteLetter(index)}
+                
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 }
 

@@ -3,8 +3,8 @@ import React from 'react'
 const CharComponent = (props) => {
   return (
     <div>
-      <p>Hello Hello</p>
-      <p>Here input:{props.char}</p>
+ 
+      <p onClick ={props.click}>Here input:  {props.char}</p>
     </div>
   );
   

@@ -4,7 +4,6 @@ const validationComponent = (props) => {
   return (
     <div>
       <p>{props.wordLength}</p>
-    
     </div>
   );
 }
